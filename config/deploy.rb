@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.4.1'
 
 server '40.76.56.133', roles: [:web, :app, :db], primary: true
 set :domain, "mutual.nuevediez.com"
