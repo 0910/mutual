@@ -35,6 +35,7 @@ gem 'select2-rails'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 gem 'swipebox'
 gem 'active_admin_csv_import'
+gem 'mail_form'
 
 
 group :development do

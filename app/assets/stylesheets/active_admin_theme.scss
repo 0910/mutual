@@ -53,6 +53,9 @@ form{
                         padding: 0 1em !important;
                     }
                 }
+                a.button, a.button:link, a.button:visited, input[type="submit"], input[type="button"], button{
+                    margin:10px 80% 10px 10px;
+                }
             }
 		}
         legend{

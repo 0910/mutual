@@ -1,0 +1,42 @@
+!!!
+%html
+	%head
+		%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+			%title
+				Mutual
+			= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+			= javascript_include_tag 'application', 'data-turbolinks-track' => true
+			= yield(:head)
+
+	%body{:class => "#{controller_name} #{action_name}"}
+		= render 'shared/getcourse'
+		%nav.navbar.navbar-default.navbar-fixed-top
+			.container-fluid
+				.navbar-header.page-scroll.col-md-4
+					%button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+						%span.sr-only
+							Toggle navigation
+						%span.icon-bar
+						%span.icon-bar
+						%span.icon-bar
+
+					= link_to(root_path, class: 'navbar-brand page-scroll') do
+						= image_tag('logo.png')
+
+				.collapse.navbar-collapse#bs-example-navbar-collapse-1
+					%ul.nav.navbar-nav.navbar-right.col-md-8
+						%li
+							%a.page-scroll(href="#")
+								Cursos
+						%li
+							%a.page-scroll(href="#")
+								Mutual
+						%li
+							%a.page-scroll(href="#")
+								Contacto
+						%li
+							%a.page-scroll(href="#")
+								Queres Enseñar?
+		.border-top
+		.border-bottom
+		= yield

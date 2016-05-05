@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425145657) do
+ActiveRecord::Schema.define(version: 20160504191834) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -46,18 +46,47 @@ ActiveRecord::Schema.define(version: 20160425145657) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "contact_forms", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "courses", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.text     "description",  limit: 65535
-    t.integer  "professor_id", limit: 4
-    t.integer  "lessons",      limit: 4
-    t.string   "google_link",  limit: 255
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "available",    limit: 255,   default: "Yes"
+    t.string   "title",                limit: 255
+    t.text     "description",          limit: 65535
+    t.integer  "professor_id",         limit: 4
+    t.string   "google_link",          limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "available",            limit: 255,   default: "Yes"
+    t.string   "picture_file_name",    limit: 255
+    t.string   "picture_content_type", limit: 255
+    t.integer  "picture_file_size",    limit: 4
+    t.datetime "picture_updated_at"
   end
 
   add_index "courses", ["professor_id"], name: "index_courses_on_professor_id", using: :btree
+
+  create_table "lessons", force: :cascade do |t|
+    t.integer  "qty",        limit: 4
+    t.integer  "price",      limit: 4
+    t.integer  "course_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
 
   create_table "professors", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -75,4 +104,5 @@ ActiveRecord::Schema.define(version: 20160425145657) do
   end
 
   add_foreign_key "courses", "professors"
+  add_foreign_key "lessons", "courses"
 end

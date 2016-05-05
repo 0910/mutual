@@ -1,0 +1,19 @@
+#getcourse.modal.fade{"tabindex" => "-1", "role" => "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", "aria-label" => "Close" }
+          %span{ "aria-hidden" => "true" } &times;
+        %h3 Contrata un Curso
+      .modal-body
+        - flash.each do |key, value|
+          %h3.information
+            = value
+        .col-md-4.col-md-offset-4
+          = form_for @contact do |f|
+            .row
+              .form-group
+                = f.collection_select :name, Lesson.all, :id, :qty, {include_blank: false}
+            .row
+              .form-group
+                = f.submit "Contratar", class: 'btn btn-success'

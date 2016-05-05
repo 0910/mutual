@@ -1,0 +1,18 @@
+ready = ->
+  
+  $('#video').vide {
+    mp4: "<%= asset_path('mutual.mp4') %>"
+    webm: "<%= asset_path('mutual.webm') %>"
+    poster: "<%= image_path('mutual.jpg') %>"
+  },
+    volume: 1
+    playbackRate: 1
+    muted: true
+    loop: true
+    autoplay: true
+    position: '50% 50%'
+    posterType: 'detect'
+    resizing: true
+    
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -26,7 +26,16 @@ ActiveAdmin.register Course do
       f.input :title, :require => true
       f.input :description
       f.input :professor, :as => :select, :collection => Professor.all, :include_blank => false, :require => true
-      f.input :lessons
+      f.input :google_link
+    end
+    f.inputs "Cover Image" do
+      f.input :picture, :as => :file, label: 'Image', hint: f.object.new_record? ? f.template.content_tag(:span, "No Image Yet") : image_tag(f.object.picture.url(:thumb))
+    end
+    f.inputs "Lessons" do
+      f.has_many :lessons do |i|
+        i.input :qty
+        i.input :price
+      end 
     end
     f.actions
   end

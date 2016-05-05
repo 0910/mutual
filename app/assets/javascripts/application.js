@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.vide.min
+//= require bootstrap
+//= require video.coffee
 //= require_tree .
