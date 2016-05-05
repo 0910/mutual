@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
-  def index
+  def demo
   	@courses = Course.all
   	@contact = Contact.new
+  	render 'index'
   end
-  def fb
+  def index
   	redirect_to "https://www.facebook.com/Mutual-1463358433988348"
   end
 end
