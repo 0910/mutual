@@ -9,11 +9,25 @@
         - flash.each do |key, value|
           %h3.information
             = value
-        .col-md-4.col-md-offset-4
-          = form_for @contact do |f|
-            .row
-              .form-group
-                = f.collection_select :name, Lesson.all, :id, :qty, {include_blank: false}
-            .row
-              .form-group
-                = f.submit "Contratar", class: 'btn btn-success'
+        = form_for @contact do |f|
+          .form-group
+            = f.label :target, 'Cantidad de Clases', class: 'control-label'
+            = f.collection_select :name, Lesson.all, :id, :qty, {include_blank: true}
+          .form-group
+            = f.label :target, 'Nombre', class: 'control-label'
+            = f.text_field :name, :required => true, class: 'form-control', placeholder: 'Nombre *'
+          .form-group
+            = f.label :target, 'E-Mail', class: 'control-label'
+            = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'E-Mail *'
+          .form-group
+            = f.label :target, 'Comentarios', class: 'control-label'
+            = f.text_area(:message, rows: 10, class: 'form-control', placeholder: 'Comentarios *')
+          .form-group.no-margin
+            = f.submit "Contratar", class: 'btn btn-success'
+:javascript
+  $(function() {
+    $('#contact_name').select2({
+      theme: "bootstrap",
+      placeholder: 'Seleccionar cantidad de clases'
+    });
+  });
