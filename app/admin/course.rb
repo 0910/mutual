@@ -17,6 +17,9 @@ ActiveAdmin.register Course do
       row :professor
       row :lessons
       row :google_link
+      row :picture do
+        image_tag(course.picture.url(:thumb))
+      end
     end
   end
 

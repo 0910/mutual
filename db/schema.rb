@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504191834) do
+ActiveRecord::Schema.define(version: 20160520162225) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20160504191834) do
     t.string   "picture_content_type", limit: 255
     t.integer  "picture_file_size",    limit: 4
     t.datetime "picture_updated_at"
+    t.string   "city",                 limit: 255
+    t.text     "coverage",             limit: 65535
   end
 
   add_foreign_key "courses", "professors"

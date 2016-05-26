@@ -38,25 +38,31 @@
                       - unless course.professor.has_location == 'No'
                         = link_to('#', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "Con Locación") do
                           = icon('home')
+                    - unless course.professor.province == nil
+                      .professor-city.pull-right
+                        %p
+                          #{course.professor.province}
                 
             .panel-collapse.collapse{"aria-labelledby" => "heading#{index}", :role => "tabpanel", :id => "collapse#{index}"}
               = image_tag(course.picture.url(:high), class: 'img-responsive')
               .panel-body
                 .row
                   .col-md-12
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    #{course.description}
                 .row
                   .col-md-12
                     = link_to "Contratar", "#getcourse", "data-toggle" => "modal", :class => 'btn btn-lg btn-default'
+                    - unless course.google_link == nil
+                      = link_to('Google Docs', course.google_link, class: 'btn btn-lg btn-default')
                 .row
                   .col-md-12
                     %hr
                 .row
-                  .col-md-12
+                  .col-md-6
                     .row.professor
-                      .col-md-2
+                      .col-md-3
                         = image_tag(course.professor.picture.url(:small), class: 'img-responsive img-rounded')
-                      .col-md-4
+                      .col-md-9
                         .row
                           .col-md-12
                             %h4
@@ -65,27 +71,21 @@
                           .col-md-12
                             %p
                               #{course.professor.bio}
+                  .col-md-6
+                    .row.professor
+                      .col-md-12
+                        %h4
+                          Provincia:
+                          #{course.professor.province}
+                        %h4
+                          Localidad:
+                          #{course.professor.city}
+                        %h4
+                          Area de accion:
+                        %p
+                          #{course.professor.coverage}
 %section#about.bg-dark-grey.bg-pattern
   .container
-    .row
-      .col-md-6.col-md-offset-3
-        .row
-          .col-xs-6.col-sm-6.col-md-6
-            .row
-              .col-sm-10.col-md-10.col-sm-offset-1.col-md-offset-1
-                = image_tag('nic.jpg', class: 'img-responsive img-rounded')
-            .row
-              .col-md-12
-                %h3.section-subheading
-                  Nic Lerner
-          .col-xs-6.col-sm-6.col-md-6
-            .row
-              .col-sm-10.col-md-10.col-sm-offset-1.col-md-offset-1
-                = image_tag('santi.jpg', class: 'img-responsive img-rounded')
-            .row
-              .col-md-12
-                %h3.section-subheading
-                  Santi García
     .row
       .col-md-8.col-md-offset-2
         %p
@@ -148,7 +148,7 @@
                   info@escuelamutual.com
                   %br/
                   %br/
-                  Seguinos en:
+                  Podés encontrarnos en:
             .row
               .col-md-12
                 %ul.list-inline.social-buttons
@@ -165,30 +165,9 @@
                     %a{:href => "#"}
                       %i.fa.fa-soundcloud
              
-%footer.bg-dark-grey
+%footer
   .container
     .row
       .col-md-12.text-center
         %span.copyright MUTUAL 2016
-:javascript
-  $(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-
-    $('.panel-collapse').on('show.bs.collapse', function () {
-      $(this).prev().find('.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-up');
-    });
-
-    $('.panel-collapse').on('hide.bs.collapse', function () {
-      $(this).prev().find('.fa-caret-up').removeClass('fa-caret-up').addClass('fa-caret-down');
-    });
-
-    $(window).on('scroll', function() {
-      if ($(this).scrollTop() > 100) {
-        $('.navbar').addClass('navbar-shrink');
-      } else {
-        $('.navbar').removeClass('navbar-shrink');
-      }
-    });
-
-  });
 

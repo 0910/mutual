@@ -14,6 +14,8 @@ ActiveAdmin.register Professor do
       row :has_car
       row :has_location
       row :province
+      row :city
+      row :coverage
       row :picture do
         image_tag(professor.picture.url(:thumb))
       end
@@ -29,6 +31,8 @@ ActiveAdmin.register Professor do
       f.input :has_car, :as => :select, :collection => ['No', 'Yes'], :include_blank => false
       f.input :has_location, :as => :select, :collection => ['No', 'Yes'], :include_blank => false
       f.input :province
+      f.input :city
+      f.input :coverage
     end
     f.inputs "Profile picture" do
       f.input :picture, :as => :file, label: 'Image', hint: f.object.new_record? ? f.template.content_tag(:span, "No Image Yet") : image_tag(f.object.picture.url(:thumb))
