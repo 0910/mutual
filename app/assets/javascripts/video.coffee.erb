@@ -23,12 +23,32 @@ ready = ->
     $('.panel-collapse').on 'hide.bs.collapse', ->
       $(this).prev().find('.fa-caret-up').removeClass('fa-caret-up').addClass 'fa-caret-down'
       return
-    $(window).on 'scroll', ->
-      if $(this).scrollTop() > 100
-        $('.navbar').addClass 'navbar-shrink'
+
+
+revealOnScroll = ->
+  $window = $(window)
+  scrolled = $window.scrollTop()
+  win_height_padded = $window.height() * 1.1
+  $('.revealonscroll:not(.animated)').each ->
+    $this = $(this)
+    offsetTop = $this.offset().top
+    if scrolled + win_height_padded > offsetTop
+      if $this.data('timeout')
+        window.setTimeout (->
+          $this.addClass 'animated'
+          return
+        ), parseInt($this.data('timeout'), 10)
       else
-        $('.navbar').removeClass 'navbar-shrink'
-      return
+        $this.addClass 'animated'
+    return
+  $('.revealonscroll.animated').each (index) ->
+    $this = $(this)
+    offsetTop = $this.offset().top
+    if scrolled + win_height_padded < offsetTop
+      $(this).removeClass 'animated'
+    return
+  return
     
 $(document).ready(ready);
 $(document).on('page:load', ready);
+$(window).on('scroll touchmove', revealOnScroll);

@@ -1,21 +1,30 @@
 / Header
 %header#video
-  .container
-    .col-md-12
-      = image_tag('biglogo.png')
-%section.bg-light
-  .container
+  .vertical-center
+    .container
+      .col-md-12
+        .row
+          = image_tag('biglogo.png')
+        .row  
+          = link_to "Ver Cursos", "#courses", :class => 'btn btn-lg btn-default'
+%section.bg-dark-grey
+  .container.revealonscroll
     .row
-      %h2.section-subheading.text-italic.text-center
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque urna eget eros consequat placerat. Nulla facilisis orci sit amet metus dapibus, vel congue felis aliquet. Curabitur a ligula id diam eleifend maximus. Duis rhoncus rhoncus erat et tempus. Pellentesque nec convallis risus. Fusce orci mi, viverra quis tortor a, bibendum venenatis magna. Phasellus eu vestibulum felis. 
+      .col-md-8.col-md-offset-2
+        %h2.section-subheading.text-center
+          Somos Mutual
+        .line
+        %h3.section-subheading.text-center
+          Mutual nace como una nueva forma de pensar la educación musical, ubicándose de manera equidistante respecto de los alumnos como de los docentes, buscando neutralizar las deficiencias de la enseñanza privada para quien enseña como para quien aprende. Fundada por dos DJs y productores de música electrónica con vasta experiencia en el campo docente, Mutual sale al mercado con el objetivo de unir la demanda de aprendizaje con la oferta de enseñanza de manera inteligente y efectiva.
     .row
-%section.bg-pattern.bg-white
-  .container
+%section#courses.bg-pattern.bg-white
+  .container.revealonscroll
     .row
-      %h1.section-heading
-        Cursos
-      %h3.section-subheading
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque urna eget eros consequat placerat. Nulla facilisis orci sit amet metus dapibus, vel congue felis aliquet. Curabitur a ligula id diam eleifend maximus. Duis rhoncus rhoncus erat et tempus. Pellentesque nec convallis risus. Fusce orci mi, viverra quis tortor a, bibendum venenatis magna. Phasellus eu vestibulum felis. 
+      .col-md-8.col-md-offset-2
+        %h1.section-heading
+          Cursos
+        %h3.section-subheading
+          Las clases se dictan de forma individual, a domicilio o en la locación del docente, según se indique en la información del curso. Se pueden contratar de forma única (una clase), dos, cuatro, ocho o dieciséis clases. Mutual aplica un descuento progresivo por cantidad de clases contratadas. La labor docente es sometida a rigurosos controles de calidad, basados en un breve cuestionario que responde el alumno.
     .row
       #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
         - @courses.each_with_index do |course, index|
@@ -33,10 +42,10 @@
                       = icon('caret-down')
                     .professor-accessibility.pull-right
                       - unless course.professor.has_car == 'No'
-                        = link_to('#', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "A Domicilio") do
+                        = link_to('#', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "A Domicilio") do
                           = icon('car')
                       - unless course.professor.has_location == 'No'
-                        = link_to('#', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "Con Locación") do
+                        = link_to('#', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Con Locación") do
                           = icon('home')
                     - unless course.professor.province == nil
                       .professor-city.pull-right
@@ -47,13 +56,13 @@
               = image_tag(course.picture.url(:high), class: 'img-responsive')
               .panel-body
                 .row
-                  .col-md-12
-                    #{course.description}
+                  .col-md-12.course-description
+                    #{simple_format(course.description)}
                 .row
                   .col-md-12
                     = link_to "Contratar", "#getcourse", "data-toggle" => "modal", :class => 'btn btn-lg btn-default'
                     - unless course.google_link == nil
-                      = link_to('Google Docs', course.google_link, class: 'btn btn-lg btn-default')
+                      = link_to('Google Docs', course.google_link, target: '_blank' ,class: 'btn btn-lg btn-default')
                 .row
                   .col-md-12
                     %hr
@@ -76,23 +85,19 @@
                       .col-md-12
                         %h4
                           Provincia:
+                        %p
                           #{course.professor.province}
                         %h4
                           Localidad:
-                          #{course.professor.city}
-                        %h4
-                          Area de accion:
                         %p
-                          #{course.professor.coverage}
-%section#about.bg-dark-grey.bg-pattern
-  .container
-    .row
-      .col-md-8.col-md-offset-2
-        %p
-          Mutual nace como una nueva forma de pensar la educación musical, ubicándose de manera equidistante respecto de los alumnos como de los docentes, buscando neutralizar las deficiencias de la enseñanza privada para quien enseña como para quien aprende. Fundada por dos DJs y productores de música electrónica con vasta experiencia en el campo docente, Mutual sale al mercado con el objetivo de unir la demanda de aprendizaje con la oferta de enseñanza de manera inteligente y efectiva.
-
+                          #{course.professor.city}
+                        - unless course.professor.has_car == 'No'
+                          %h4
+                            Area de accion:
+                          %p
+                            #{course.professor.coverage}
 %aside.clients.bg-white
-  .container
+  .container.revealonscroll
     .row
       .col-md-3.col-sm-6
         = link_to('#') do
@@ -108,14 +113,37 @@
           = image_tag('sponsor04.jpg', class: 'img-responsive')
 
 %section#contact.bg-light
-  .container
+  .container.revealonscroll
     .row
-      .col-md-10.col-md-offset-1
+      .col-md-12
         .row
-          .col-md-12
-            %h1.section-heading
-              Contacto
-        .row
+          .col-md-6
+            .row
+              .col-md-12
+                %h3.text-left
+                  Tenes alguna duda?
+                  %br
+                  %span
+                    Nos encantaría saber de vos.
+                %h4.text-left.text-muted
+                  Llamanos al 45455656
+                  %br/
+                  o escribinos a info@escuelamutual.com
+                  %br/
+                  %br/
+                  También podés encontrarnos en:
+            .row
+              .col-md-12
+                %ul.list-inline.social-buttons
+                  %li
+                    %a{:href => "https://www.linkedin.com/company/10799059"}
+                      %i.fa.fa-linkedin
+                  %li
+                    %a{:href => "https://www.facebook.com/Mutual-1463358433988348"}
+                      %i.fa.fa-facebook
+                  %li
+                    %a{:href => "https:twitter.com/escuelamutual"}
+                      %i.fa.fa-twitter
           .col-md-6
             %form#contactForm{:name => "sentMessage", :novalidate => ""}
               .row
@@ -133,41 +161,49 @@
                 .col-lg-12
                   #success
                   %button.btn.btn-lg.btn-default{:type => "submit"} Enviar Mensaje
-          .col-md-6
-            .row
-              .col-md-12
-                %h3.text-muted.text-left
-                  Tenes alguna duda?
-                  %br
-                  %span
-                    Nos encantaria saber de vos.
-                    %br/
-                %h3.text-left
-                  Llamanos al 45455656
-                  %br/
-                  info@escuelamutual.com
-                  %br/
-                  %br/
-                  Podés encontrarnos en:
-            .row
-              .col-md-12
-                %ul.list-inline.social-buttons
-                  %li
-                    %a{:href => "#"}
-                      %i.fa.fa-facebook
-                  %li
-                    %a{:href => "#"}
-                      %i.fa.fa-instagram
-                  %li
-                    %a{:href => "#"}
-                      %i.fa.fa-youtube
-                  %li
-                    %a{:href => "#"}
-                      %i.fa.fa-soundcloud
              
 %footer
-  .container
+  .container-fluid.revealonscroll
     .row
-      .col-md-12.text-center
-        %span.copyright MUTUAL 2016
+      .col-md-6
+        .row
+          .footer-wrap
+            .row
+              .col-md-2
+                = link_to(root_path, class: 'footer-brand') do
+                  = image_tag('logo-footer.png')
+              .col-md-10
+                %form#footerForm{:name => "sentMessage", :novalidate => ""}
+                .row
+                  .col-md-12
+                    .form-group
+                      %input#email{"data-validation-required-message" => "Por favor, ingrese su email.", :placeholder => "Email *", :required => "", :type => "email"}/
+                      %button#submit{:type => "submit"} Enviar
+            .row
+              .col-md-2
+                = link_to('#', class: 'arrow-up') do
+                  = image_tag('arrow.png')
+              .col-md-10
+                %p
+                  2016 Mutual, Todos los derechos reservados. Crafted by 
+                  = link_to('NueveDiez', 'http://www.nuevediez.com.ar', target:'_blank', class: 'nuevediez')
 
+      .col-md-4.col-md-offset-2
+        .row
+          .footer-wrap
+            .col-md-6
+              %a{:href => "https://www.linkedin.com/company/10799059", class: 'footer-link'}
+                %i.fa.fa-linkedin
+                LinkedIn
+            .col-md-6
+              %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
+                %i.fa.fa-facebook
+                Facebook
+            .col-md-6
+              %a{:href => "https:twitter.com/escuelamutual", class: 'footer-link'}
+                %i.fa.fa-twitter
+                Twitter
+            .col-md-6
+              %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
+                %i.fa.fa-mixcloud
+                Mixcloud

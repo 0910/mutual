@@ -1,6 +1,44 @@
 ActiveAdmin.register Course do
 
+  # ensures that the default ordering reflects our updates
+  config.sort_order = "order"
+  # reordering doesn't work across multiple pages,
+  # so try to put everything on one page
+  config.per_page   = 100
+
+   # this filter isn't really needed
+  remove_filter :order
+
+  collection_action :reorder, method: :patch do
+    reorder_params = params.require(:items).map {|item| item.permit(:id, :order) }
+
+    reorder_ids        = reorder_params.map {|item| item[:id] }
+    reorder_attributes = reorder_params.map {|item| item.slice(:order) }
+
+    resource_class.update(reorder_ids, reorder_attributes)
+
+    render json: { status: "success" }
+  end
+
+  controller do
+    private
+
+    def reorderable_column(dsl)
+      # Don't allow reordering if filter(s) present
+      # or records aren't sorted by `order`
+      return if params[:q].present? || params[:order] != "order"
+
+      dsl.column(sortable: false) do
+        dsl.icon :arrows, class: "js-reorder-handle"
+      end
+    end
+
+    helper_method :reorderable_column
+  end
+
   index do
+    reorderable_column(self)
+    selectable_column
     column :id
     column :title
     column :professor

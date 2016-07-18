@@ -12,7 +12,7 @@
 		= render 'shared/getcourse'
 		%nav.navbar.navbar-default.navbar-fixed-top
 			.container-fluid
-				.navbar-header.page-scroll.col-md-4
+				.navbar-header.page-scroll
 					%button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
 						%span.sr-only
 							Toggle navigation
@@ -24,7 +24,10 @@
 						= image_tag('logo.png')
 
 				.collapse.navbar-collapse#bs-example-navbar-collapse-1
-					%ul.nav.navbar-nav.navbar-right.col-md-8
+					%ul.nav.navbar-nav.col-md-8
+						%li
+							%a.page-scroll(href="#")
+								Home
 						%li
 							%a.page-scroll(href="#")
 								Cursos
@@ -34,9 +37,19 @@
 						%li
 							%a.page-scroll(href="#")
 								Contacto
+					%ul.nav.navbar-right
 						%li
-							%a.page-scroll(href="#")
-								Queres Enseñar?
-		.border-top
-		.border-bottom
+							= link_to "Quiero Enseñar", "#getcourse", "data-toggle" => "modal", :class => 'btn btn-lg btn-primary'
+						%li
+							%a{:href => "https://www.linkedin.com/company/10799059"}
+								%i.fa.fa-linkedin
+						%li
+							%a{:href => "https://www.facebook.com/Mutual-1463358433988348"}
+								%i.fa.fa-facebook
+						%li
+							%a{:href => "https:twitter.com/escuelamutual"}
+								%i.fa.fa-twitter
+						%li
+							%a{:href => "https:twitter.com/escuelamutual"}
+								%i.fa.fa-mixcloud
 		= yield

@@ -1,5 +1,6 @@
 #= require active_admin/base
 #= require active_admin/select2
+#= require ./admin/reorderable_table
 
 ready = ->
 	set_admin_selectable_events()
