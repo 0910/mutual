@@ -40,7 +40,7 @@ gem "gibbon"
 
 
 group :development do
-    gem 'capistrano'
+    gem 'capistrano', '~> 3.4.1'
     gem 'capistrano-rbenv'
     gem 'capistrano-rails'
     gem 'capistrano-bundler'
