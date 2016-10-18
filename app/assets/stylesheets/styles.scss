@@ -200,6 +200,9 @@ fieldset[disabled] .btn-primary.active {
     background-color: #fed201;
     border-color: #fed201
 }
+a.btn-primary::after, a.btn-primary:hover::after{
+  content: none !important;
+}
 
 .btn-primary .badge {
     color: #fed201;
@@ -505,7 +508,7 @@ section {
     margin-top: 60px;
 }
 .panel-group .panel{
-    border-radius: 0px;
+    border-radius: 5px;
     border:none;
 }
 .panel-group .panel + .panel {
@@ -513,6 +516,14 @@ section {
 }
 .panel-default{
     background-color: #eccb25;
+}
+.panel-default:hover{
+  background-color: #ffd925;
+  -webkit-transition: all .4s cubic-bezier(.25,.1,.25,1);
+  -moz-transition: all .4s cubic-bezier(.25,.1,.25,1);
+  -ms-transition: all .4s cubic-bezier(.25,.1,.25,1);
+  -o-transition: all .4s cubic-bezier(.25,.1,.25,1);
+  transition: all .4s cubic-bezier(.25,.1,.25,1);
 }
 .panel-default > .panel-heading{
     background-color: transparent;
@@ -533,6 +544,13 @@ section {
     }
 }
 
+.course-img{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 240px;
+  width: 100%;
+}
 .panel-body{
     padding: 25px 30px;
     font-size: 1.308em;
@@ -688,7 +706,7 @@ section h3.section-subheading {
 .professor-city{
     padding: 0 15px;
     p{
-        margin-top: 4px;
+        margin-top: 1px;
     }
 }
 .panel-toggle{

@@ -53,7 +53,7 @@
                           #{course.professor.province}
                 
             .panel-collapse.collapse{"aria-labelledby" => "heading#{index}", :role => "tabpanel", :id => "collapse#{index}"}
-              = image_tag(course.picture.url(:high), class: 'img-responsive')
+              .course-img{:style => "background-image: url(#{course.picture.url(:high)})"}
               .panel-body
                 .row
                   .col-md-12.course-description
@@ -61,8 +61,6 @@
                 .row
                   .col-md-12
                     = link_to "Contratar", "#getcourse", "data-toggle" => "modal", :class => 'btn btn-lg btn-default'
-                    - unless course.google_link == nil
-                      = link_to('Google Docs', course.google_link, target: '_blank' ,class: 'btn btn-lg btn-default')
                 .row
                   .col-md-12
                     %hr
@@ -121,7 +119,7 @@
             .row
               .col-md-12
                 %h3.text-left
-                  Tenes alguna duda?
+                  ¿Tenés alguna duda?
                   %br
                   %span
                     Nos encantaría saber de vos.
@@ -144,6 +142,9 @@
                   %li
                     %a{:href => "https:twitter.com/escuelamutual"}
                       %i.fa.fa-twitter
+                  %li
+                    %a{:href => "https:twitter.com/escuelamutual"}
+                      %i.fa.fa-instagram
           .col-md-6
             %form#contactForm{:name => "sentMessage", :novalidate => ""}
               .row
@@ -205,5 +206,5 @@
                 Twitter
             .col-md-6
               %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
-                %i.fa.fa-mixcloud
-                Mixcloud
+                %i.fa.fa-instagram
+                Instagram
