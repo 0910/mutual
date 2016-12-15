@@ -26,19 +26,15 @@
             = image_tag('logo.png')
 
         .collapse.navbar-collapse#bs-example-navbar-collapse-1
-          %ul.nav.navbar-nav.col-md-8
+          %ul.nav.navbar-nav.col-md-6
             %li
-              %a.page-scroll(href="#")
-                Home
+              = link_to 'Home', root_path, class: 'page-scroll'
             %li
-              %a.page-scroll(href="#")
-                Cursos
+              = link_to 'Cursos', root_path + "#courses", class: 'page-scroll' 
             %li
-              %a.page-scroll(href="#")
-                Mutual
+              = link_to 'Mutual', root_path + "#mutual", class: 'page-scroll' 
             %li
-              %a.page-scroll(href="#")
-                Contacto
+              = link_to 'Contacto', root_path + "#contact", class: 'page-scroll' 
           %ul.nav.navbar-right
             %li
               = link_to "¿Querés Enseñar?", "#teach", "data-toggle" => "modal", :class => 'btn btn-lg btn-primary'
@@ -128,15 +124,13 @@
                     = link_to(root_path, class: 'footer-brand') do
                       = image_tag('logo-footer.png')
                   .col-md-10
-                    %form#footerForm{:name => "sentMessage", :novalidate => ""}
-                      .row
-                        .col-md-12
-                          .form-group
-                            %input#email{"data-validation-required-message" => "Por favor, ingrese su email.", :placeholder => "Email *", :required => "", :type => "email"}
-                            %button#submit{:type => "submit"} Enviar
+                    = form_for @contact do |f|
+                      .form-group
+                        = f.email_field :email, autofocus: true, placeholder: 'E-Mail *'
+                        = f.submit "Enviar", id: 'submit'
                 .row
                   .col-md-2
-                    = link_to('#', class: 'arrow-up') do
+                    = link_to('#', class: 'arrow-up hidden-xs') do
                       = image_tag('arrow.png')
                   .col-md-10
                     %p

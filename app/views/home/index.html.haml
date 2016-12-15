@@ -2,12 +2,13 @@
 %header#video
   .vertical-center
     .container
-      .col-md-12
+      .col-sm-12.col-md-8.col-md-offset-2
         .row
-          = image_tag('biglogo.png')
+          = image_tag('biglogo.png', class: 'biglogo hidden-xs')
+          = image_tag('mobilelogo.png', class: 'biglogo visible-xs')
         .row  
           = link_to "Ver Cursos", "#courses", :class => 'btn btn-lg btn-default'
-%section.bg-dark-grey
+%section#mutual.bg-dark-grey
   .container.revealonscroll
     .row
       .col-md-8.col-md-offset-2
