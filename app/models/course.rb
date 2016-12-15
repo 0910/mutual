@@ -7,4 +7,6 @@ class Course < ActiveRecord::Base
             :path => ":rails_root/public/assets/courses/:id/:style/:basename.:extension"
             
   	validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
+    extend FriendlyId
+    friendly_id :title, use: :slugged
 end

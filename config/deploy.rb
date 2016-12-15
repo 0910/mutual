@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.1'
 
-server '40.76.56.133', roles: [:web, :app, :db], primary: true
+server '13.92.25.71', roles: [:web, :app, :db], primary: true
 set :domain, "mutual.nuevediez.com"
 set :repo_url,        'git@github.com:0910/mutual.git'
 set :application,     'mutual'

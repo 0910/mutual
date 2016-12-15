@@ -12,7 +12,7 @@
         = form_for @contact do |f|
           .form-group
             = f.label :target, 'Cantidad de Clases', class: 'control-label'
-            = f.collection_select :name, Lesson.where(course_id: 1), :id, :lesson_info, {include_blank: true}
+            = f.collection_select :name, @lessons, :id, :lesson_info, {include_blank: true}
           .form-group
             = f.label :target, 'Nombre', class: 'control-label'
             = f.text_field :name, :required => true, class: 'form-control', placeholder: 'Nombre *'

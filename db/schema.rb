@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018002021) do
+ActiveRecord::Schema.define(version: 20161019215657) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20161018002021) do
     t.integer  "picture_file_size",    limit: 4
     t.datetime "picture_updated_at"
     t.integer  "order",                limit: 4
+    t.string   "slug",                 limit: 255
   end
 
   add_index "courses", ["professor_id"], name: "index_courses_on_professor_id", using: :btree

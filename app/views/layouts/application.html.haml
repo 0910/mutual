@@ -1,55 +1,163 @@
 !!!
 %html
-	%head
-		%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-			%title
-				Mutual
-			= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-			= javascript_include_tag 'application', 'data-turbolinks-track' => true
-			= yield(:head)
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+      %title
+        Mutual
+      = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = yield(:head)
 
-	%body{:class => "#{controller_name} #{action_name}"}
-		= render 'shared/getcourse'
-		%nav.navbar.navbar-default.navbar-fixed-top
-			.container-fluid
-				.navbar-header.page-scroll
-					%button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-						%span.sr-only
-							Toggle navigation
-						%span.icon-bar
-						%span.icon-bar
-						%span.icon-bar
+  %body{:class => "#{controller_name} #{action_name}"}
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: name
+    = render 'shared/teach'
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header.page-scroll
+          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only
+              Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
 
-					= link_to(root_path, class: 'navbar-brand page-scroll') do
-						= image_tag('logo.png')
+          = link_to(root_path, class: 'navbar-brand page-scroll') do
+            = image_tag('logo.png')
 
-				.collapse.navbar-collapse#bs-example-navbar-collapse-1
-					%ul.nav.navbar-nav.col-md-8
-						%li
-							%a.page-scroll(href="#")
-								Home
-						%li
-							%a.page-scroll(href="#")
-								Cursos
-						%li
-							%a.page-scroll(href="#")
-								Mutual
-						%li
-							%a.page-scroll(href="#")
-								Contacto
-					%ul.nav.navbar-right
-						%li
-							= link_to "¿Querés Enseñar?", "#teach", "data-toggle" => "modal", :class => 'btn btn-lg btn-primary'
-						%li
-							%a{:href => "https://www.linkedin.com/company/10799059"}
-								%i.fa.fa-linkedin
-						%li
-							%a{:href => "https://www.facebook.com/Mutual-1463358433988348"}
-								%i.fa.fa-facebook
-						%li
-							%a{:href => "https:twitter.com/escuelamutual"}
-								%i.fa.fa-twitter
-						%li
-							%a{:href => "https:twitter.com/escuelamutual"}
-								%i.fa.fa-instagram
-		= yield
+        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+          %ul.nav.navbar-nav.col-md-8
+            %li
+              %a.page-scroll(href="#")
+                Home
+            %li
+              %a.page-scroll(href="#")
+                Cursos
+            %li
+              %a.page-scroll(href="#")
+                Mutual
+            %li
+              %a.page-scroll(href="#")
+                Contacto
+          %ul.nav.navbar-right
+            %li
+              = link_to "¿Querés Enseñar?", "#teach", "data-toggle" => "modal", :class => 'btn btn-lg btn-primary'
+            %li
+              %a{:href => "https://www.linkedin.com/company/10799059"}
+                %i.fa.fa-linkedin
+            %li
+              %a{:href => "https://www.facebook.com/Mutual-1463358433988348"}
+                %i.fa.fa-facebook
+            %li
+              %a{:href => "https:twitter.com/escuelamutual"}
+                %i.fa.fa-twitter
+            %li
+              %a{:href => "https:twitter.com/escuelamutual"}
+                %i.fa.fa-instagram
+    = yield
+    %aside.clients.bg-white
+      .container.revealonscroll
+        .row
+          .col-md-3.col-sm-6
+            = link_to('#') do
+              = image_tag('sponsor01.jpg', class: 'img-responsive')
+          .col-md-3.col-sm-6
+            = link_to('#') do
+              = image_tag('sponsor02.jpg', class: 'img-responsive')
+          .col-md-3.col-sm-6
+            = link_to('#') do
+              = image_tag('sponsor03.jpg', class: 'img-responsive')
+          .col-md-3.col-sm-6
+            = link_to('#') do
+              = image_tag('sponsor04.jpg', class: 'img-responsive')
+
+    %section#contact.bg-light
+      .container.revealonscroll
+        .row
+          .col-md-12
+            .row
+              .col-md-6
+                .row
+                  .col-md-12
+                    %h3.text-left
+                      ¿Tenés alguna duda?
+                      %br
+                      %span
+                        Nos encantaría saber de vos.
+                    %h4.text-left.text-muted
+                      Llamanos al 45455656
+                      %br/
+                      o escribinos a info@escuelamutual.com
+                      %br/
+                      %br/
+                      También podés encontrarnos en:
+                .row
+                  .col-md-12
+                    %ul.list-inline.social-buttons
+                      %li
+                        %a{:href => "https://www.linkedin.com/company/10799059"}
+                          %i.fa.fa-linkedin
+                      %li
+                        %a{:href => "https://www.facebook.com/Mutual-1463358433988348"}
+                          %i.fa.fa-facebook
+                      %li
+                        %a{:href => "https:twitter.com/escuelamutual"}
+                          %i.fa.fa-twitter
+                      %li
+                        %a{:href => "https:twitter.com/escuelamutual"}
+                          %i.fa.fa-instagram
+              .col-md-6
+                = form_for @contact do |f|
+                  .form-group
+                    = f.text_field :name, :required => true, class: 'form-control', placeholder: 'Nombre *'
+                  .form-group
+                    = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'E-Mail *'
+                  .form-group
+                    = f.text_area(:message, rows: 10, class: 'form-control', placeholder: 'Comentarios *')
+                  .form-group
+                    = f.submit "Enviar", class: 'btn btn-default btn-lg'
+
+    %footer
+      .container-fluid.revealonscroll
+        .row
+          .col-md-6
+            .row
+              .footer-wrap
+                .row
+                  .col-md-2
+                    = link_to(root_path, class: 'footer-brand') do
+                      = image_tag('logo-footer.png')
+                  .col-md-10
+                    %form#footerForm{:name => "sentMessage", :novalidate => ""}
+                      .row
+                        .col-md-12
+                          .form-group
+                            %input#email{"data-validation-required-message" => "Por favor, ingrese su email.", :placeholder => "Email *", :required => "", :type => "email"}
+                            %button#submit{:type => "submit"} Enviar
+                .row
+                  .col-md-2
+                    = link_to('#', class: 'arrow-up') do
+                      = image_tag('arrow.png')
+                  .col-md-10
+                    %p
+                      2016 Mutual, Todos los derechos reservados. Made with love by 
+                      = link_to('Noise', 'http://www.wemakenoise.co', target:'_blank', class: 'noise')
+          .col-md-4.col-md-offset-2
+            .row
+              .footer-wrap
+                .col-md-6
+                  %a{:href => "https://www.linkedin.com/company/10799059", class: 'footer-link'}
+                    %i.fa.fa-linkedin
+                    LinkedIn
+                .col-md-6
+                  %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
+                    %i.fa.fa-facebook
+                    Facebook
+                .col-md-6
+                  %a{:href => "https:twitter.com/escuelamutual", class: 'footer-link'}
+                    %i.fa.fa-twitter
+                    Twitter
+                .col-md-6
+                  %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
+                    %i.fa.fa-instagram
+                    Instagram

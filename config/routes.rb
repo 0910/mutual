@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'courses/show'
+
   get '/demo' => 'home#demo'
   resources "contacts", only: [:new, :create]
+  resources "courses", only: [:show]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

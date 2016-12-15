@@ -33,13 +33,11 @@
               %h4.panel-title
                 .row
                   .col-xs-12.col-sm-8.col-md-8
-                    %a{"aria-controls" => "collapse#{index}", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{index}", :role => "button"}
+                    = link_to(course_path(course)) do
                       #{course.title}
                       %span
                         Por #{course.professor.name}
                   .col-xs-12.col-sm-4.col-md-4
-                    = link_to('#', class: 'panel-toggle pull-right', "aria-controls" => "collapse#{index}", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{index}", :role => "button") do
-                      = icon('caret-down')
                     .professor-accessibility.pull-right
                       - unless course.professor.has_car == 'No'
                         = link_to('#', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "A Domicilio") do
@@ -94,117 +92,3 @@
                             Area de accion:
                           %p
                             #{course.professor.coverage}
-%aside.clients.bg-white
-  .container.revealonscroll
-    .row
-      .col-md-3.col-sm-6
-        = link_to('#') do
-          = image_tag('sponsor01.jpg', class: 'img-responsive')
-      .col-md-3.col-sm-6
-        = link_to('#') do
-          = image_tag('sponsor02.jpg', class: 'img-responsive')
-      .col-md-3.col-sm-6
-        = link_to('#') do
-          = image_tag('sponsor03.jpg', class: 'img-responsive')
-      .col-md-3.col-sm-6
-        = link_to('#') do
-          = image_tag('sponsor04.jpg', class: 'img-responsive')
-
-%section#contact.bg-light
-  .container.revealonscroll
-    .row
-      .col-md-12
-        .row
-          .col-md-6
-            .row
-              .col-md-12
-                %h3.text-left
-                  ¿Tenés alguna duda?
-                  %br
-                  %span
-                    Nos encantaría saber de vos.
-                %h4.text-left.text-muted
-                  Llamanos al 45455656
-                  %br/
-                  o escribinos a info@escuelamutual.com
-                  %br/
-                  %br/
-                  También podés encontrarnos en:
-            .row
-              .col-md-12
-                %ul.list-inline.social-buttons
-                  %li
-                    %a{:href => "https://www.linkedin.com/company/10799059"}
-                      %i.fa.fa-linkedin
-                  %li
-                    %a{:href => "https://www.facebook.com/Mutual-1463358433988348"}
-                      %i.fa.fa-facebook
-                  %li
-                    %a{:href => "https:twitter.com/escuelamutual"}
-                      %i.fa.fa-twitter
-                  %li
-                    %a{:href => "https:twitter.com/escuelamutual"}
-                      %i.fa.fa-instagram
-          .col-md-6
-            %form#contactForm{:name => "sentMessage", :novalidate => ""}
-              .row
-                .col-md-12
-                  .form-group
-                    %input#name.form-control{"data-validation-required-message" => "Por favor, ingrese su nombre.", :placeholder => "Nombre *", :required => "", :type => "text"}/
-                    %p.help-block.text-danger
-                  .form-group
-                    %input#email.form-control{"data-validation-required-message" => "Por favor, ingrese su email.", :placeholder => "Email *", :required => "", :type => "email"}/
-                    %p.help-block.text-danger
-                  .form-group
-                    %textarea#message.form-control{"data-validation-required-message" => "Por favor, ingrese su mensaje.", :placeholder => "Mensaje *", :required => ""}
-                    %p.help-block.text-danger
-              .row  
-                .col-lg-12
-                  #success
-                  %button.btn.btn-lg.btn-default{:type => "submit"} Enviar Mensaje
-             
-%footer
-  .container-fluid.revealonscroll
-    .row
-      .col-md-6
-        .row
-          .footer-wrap
-            .row
-              .col-md-2
-                = link_to(root_path, class: 'footer-brand') do
-                  = image_tag('logo-footer.png')
-              .col-md-10
-                %form#footerForm{:name => "sentMessage", :novalidate => ""}
-                .row
-                  .col-md-12
-                    .form-group
-                      %input#email{"data-validation-required-message" => "Por favor, ingrese su email.", :placeholder => "Email *", :required => "", :type => "email"}/
-                      %button#submit{:type => "submit"} Enviar
-            .row
-              .col-md-2
-                = link_to('#', class: 'arrow-up') do
-                  = image_tag('arrow.png')
-              .col-md-10
-                %p
-                  2016 Mutual, Todos los derechos reservados. Crafted by 
-                  = link_to('NueveDiez', 'http://www.nuevediez.com.ar', target:'_blank', class: 'nuevediez')
-
-      .col-md-4.col-md-offset-2
-        .row
-          .footer-wrap
-            .col-md-6
-              %a{:href => "https://www.linkedin.com/company/10799059", class: 'footer-link'}
-                %i.fa.fa-linkedin
-                LinkedIn
-            .col-md-6
-              %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
-                %i.fa.fa-facebook
-                Facebook
-            .col-md-6
-              %a{:href => "https:twitter.com/escuelamutual", class: 'footer-link'}
-                %i.fa.fa-twitter
-                Twitter
-            .col-md-6
-              %a{:href => "https://www.facebook.com/Mutual-1463358433988348", class: 'footer-link'}
-                %i.fa.fa-instagram
-                Instagram

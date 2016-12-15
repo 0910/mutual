@@ -1,0 +1,69 @@
+= render 'shared/getcourse'
+%section#courses.bg-pattern.bg-white
+  .container
+    .row
+      #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              .row
+                .col-xs-12.col-sm-8.col-md-8
+                  %a{href: "#"}
+                    #{@course.title}
+                    %span
+                      Por #{@course.professor.name}
+                .col-xs-12.col-sm-4.col-md-4
+                  .professor-accessibility.pull-right
+                    - unless @course.professor.has_car == 'No'
+                      = link_to('#', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "A Domicilio") do
+                        = icon('car')
+                    - unless @course.professor.has_location == 'No'
+                      = link_to('#', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Con Locación") do
+                        = icon('home')
+                  - unless @course.professor.province == nil
+                    .professor-city.pull-right
+                      %p
+                        #{@course.professor.province}
+              
+          .panel-collapse
+            .course-img{:style => "background-image: url(#{@course.picture.url(:high)})"}
+            .panel-body
+              .row
+                .col-md-12.course-description
+                  #{simple_format(@course.description)}
+              .row
+                .col-md-12
+                  = link_to "Contratar", "#getcourse", "data-toggle" => "modal", :class => 'btn btn-lg btn-default'
+              .row
+                .col-md-12
+                  %hr
+              .row
+                .col-md-6
+                  .row.professor
+                    .col-md-3
+                      = image_tag(@course.professor.picture.url(:small), class: 'img-responsive img-rounded')
+                    .col-md-9
+                      .row
+                        .col-md-12
+                          %h4
+                            #{@course.professor.name}
+                      .row
+                        .col-md-12
+                          %p
+                            #{@course.professor.bio}
+                .col-md-6
+                  .row.professor
+                    .col-md-12
+                      %h4
+                        Provincia:
+                      %p
+                        #{@course.professor.province}
+                      %h4
+                        Localidad:
+                      %p
+                        #{@course.professor.city}
+                      - unless @course.professor.has_car == 'No'
+                        %h4
+                          Area de accion:
+                        %p
+                          #{@course.professor.coverage}
